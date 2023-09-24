@@ -1,0 +1,25 @@
+version: '3.2'
+services:
+  zipkin:
+    image: openzipkin/zipkin:2
+    ports:
+    - 9411:9411
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+    - 5672:5672
+    - 15672:15672
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'movie-dev'
+      MYSQL_USER: 'usr-movie'
+      MYSQL_PASSWORD: 'pwd-movie'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3370:3306'
+    expose:
+      - '3306'
+   
